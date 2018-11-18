@@ -1,3 +1,5 @@
+FOLLOWING TUTORIAL : https://medium.com/@tomastrajan/how-to-build-responsive-layouts-with-bootstrap-4-and-angular-6-cfbb108d797b
+
 # AngularBootstrapExample
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
