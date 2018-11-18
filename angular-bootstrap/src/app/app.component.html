@@ -30,3 +30,24 @@
 
 
 <router-outlet></router-outlet>
+<div class="container">
+
+  <button type="button" class="btn btn-primary" tooltip="Yay my first tool tip">
+  Button with tooltip
+  </button>
+
+  <button type="button" class="btn btn-info" (click)="openModal(template)">Create template modal</button>
+
+  <ng-template #template>
+      <div class="modal-header">
+          <h4 class="modal-title pull-left">Alert!</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+       <span aria-hidden="true">&times;</span>
+     </button>
+      </div>
+      <div class="modal-body">
+          Yay my first pop up.
+      </div>
+  </ng-template>
+
+</div>
