@@ -1,0 +1,26 @@
+<!doctype html>
+<html ng-app="myapp">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js">	</script>
+		<script src="./side.js"></script>
+		<body ng-controller="mycntl">
+			<div>
+				<label>Name:</label>
+				<input type="text" ng-model="yourName" placeholder="Enter name">
+				<h1>{{greeting}} {{yourName}} !</h1>
+			</div>
+			<ul>
+				<li ng-repeat="person in personArray">
+					{{person.name}}
+				</li>
+			</ul>
+			<select name="singleSelect" ng-model="data.singleSelect"><option value="option-1">Option 1</option>
+				<option value="option-2">Option 2</option></select>
+				<h2>{{data.singleSelect}}</h2>
+		</body>
+		<button ng-click="count = count + 1" ng-init="count=0">
+			Increment
+		</button>
+		<span>count: {{count}}</span>
+		
+</html>
