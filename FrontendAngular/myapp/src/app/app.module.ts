@@ -20,6 +20,8 @@ import { AboutComponent } from './about/about.component';
 import { DishService} from './services/dish.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     DishdetailComponent,
     HomeComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
