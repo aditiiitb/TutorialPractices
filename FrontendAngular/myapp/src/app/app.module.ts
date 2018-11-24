@@ -24,6 +24,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LeaderService } from './services/leader.service';
+import { LoginComponent } from './login/login.component';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { LeaderService } from './services/leader.service';
     ContactComponent,
     AboutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,11 @@ import { LeaderService } from './services/leader.service';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+  ],
+  entryComponents: [
+    LoginComponent
   ],
   providers: [DishService, PromotionService, LeaderService],
   bootstrap: [AppComponent]
