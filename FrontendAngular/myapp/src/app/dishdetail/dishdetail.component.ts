@@ -69,7 +69,6 @@ export class DishdetailComponent implements OnInit {
     if (!this.commentForm) {return;}
     const form = this.commentForm;
     this.previewComment = this.commentForm.value;
-    this.previewComment.date = Date.now().toString();
     for (const field in this.formErrors) {
       if (this.formErrors.hasOwnProperty(field)) {
         this.formErrors[field]='';
@@ -96,6 +95,9 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
+    this.previewComment = this.commentForm.value;
+    this.previewComment.date = Date.now().toString();
+    this.dish.comments.push(this.previewComment);
     // TODO add date thingy
     console.log(this.commentForm.value);
     this.commentForm.reset({
