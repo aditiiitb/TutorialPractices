@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import {switchMap} from 'rxjs/operators';
+import { Comment} from '../shared/comment';
 
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -21,6 +22,7 @@ export class DishdetailComponent implements OnInit {
   prev: string;
   next: string;
   commentForm: FormGroup;
+  previewComment: Comment;
 
   formErrors = {
     'comment' : '',
@@ -66,6 +68,8 @@ export class DishdetailComponent implements OnInit {
   onValueChanged(data? : any) {
     if (!this.commentForm) {return;}
     const form = this.commentForm;
+    this.previewComment = this.commentForm.value;
+    this.previewComment.date = Date.now().toString();
     for (const field in this.formErrors) {
       if (this.formErrors.hasOwnProperty(field)) {
         this.formErrors[field]='';
