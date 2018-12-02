@@ -45,6 +45,25 @@
           <h1 matLine> -- {{ comment.author }} {{ comment.date | date}} </h1>
         </mat-list-item>
       </mat-list>
+      <div>
+        <form novalidate [formGroup]="commentForm" #cform="ngForm" (ngSubmit)="onSubmit()">
+          <p>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="author" placeholder="Name" type="text" required>
+              <mat-error *ngIf="formErrors.author">  {{ formErrors.author}}</mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-slider min="1" max="5" step="1" formControlName="rating" thumbLabel=true></mat-slider>
+          </p>
+          <p>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="comment" placeholder="Comment" type="text" required>
+              <mat-error *ngIf="formErrors.comment"> {{ formErrors.comment}} </mat-error>
+            </mat-form-field>
+          </p>
+          <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="!commentForm.valid">Submit</button>
+        </form>
+      </div>
   </div>
-
 </div>
