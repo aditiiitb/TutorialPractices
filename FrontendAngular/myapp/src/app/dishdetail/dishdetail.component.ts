@@ -24,6 +24,7 @@ export class DishdetailComponent implements OnInit {
   commentForm: FormGroup;
   previewComment: Comment;
   errMess: string;
+  dishCopy: Dish;
 
   formErrors = {
     'comment' : '',
@@ -52,7 +53,9 @@ export class DishdetailComponent implements OnInit {
     this.route.params
     .pipe(switchMap((params : Params) =>
           this.dishservice.getDish(params['id'])))
-    .subscribe(dish => {this.dish = dish; this.setPrevNext(dish.id)},
+    .subscribe(dish => {this.dish = dish;
+      this.dishCopy = dish;
+      this.setPrevNext(dish.id)},
     errmess => {this.errMess = <any>errmess});
   }
 
@@ -100,7 +103,10 @@ export class DishdetailComponent implements OnInit {
   onSubmit() {
     this.previewComment = this.commentForm.value;
     this.previewComment.date = Date.now().toString();
-    this.dish.comments.push(this.previewComment);
+    this.dishCopy.comments.push(this.previewComment);
+    this.dishservice.putDish(this.dishCopy).subscribe(
+      dish => {this.dish = dish; this.dishCopy = dish;},
+      errmess => {this.dish = null; this.dishCopy = null; this.errMess = <any>errmess});
     // TODO add date thingy
     console.log(this.commentForm.value);
     this.commentForm.reset({
