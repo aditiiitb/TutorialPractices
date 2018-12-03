@@ -46,8 +46,10 @@ export class ContactComponent implements OnInit {
   };
 
   feedbackForm: FormGroup;
-  feedback: Feedback;
+  feedback: Feedback = null;
   contactType = ContactType;
+  submissionErrMess: string;
+  pressedSubmit: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -101,18 +103,28 @@ export class ContactComponent implements OnInit {
     }
   }
   onSubmit() {
-    this.feedback = this.feedbackForm.value;
-    this.feedbackService.submitFeedback(this.feedback).subscribe(feedback => {
-      this.feedbackForm.reset({
-        firstname: "",
-        lastname: "",
-        telnum: "",
-        email: "",
-        agree: false,
-        contacttype: "None",
-        message: ""
-      });
-      this.feedbackFormDirective.resetForm();
-    });
+    this.pressedSubmit = true;
+    this.feedbackService.submitFeedback(this.feedbackForm.value).subscribe(
+      feedback => {
+        this.feedback = feedback;
+        setTimeout(() => {
+          this.feedback = null;
+          this.pressedSubmit = false;
+          this.feedbackForm.reset({
+            firstname: "",
+            lastname: "",
+            telnum: "",
+            email: "",
+            agree: false,
+            contacttype: "None",
+            message: ""
+          });
+          this.feedbackFormDirective.resetForm();
+        }, 5000);
+      },
+      errormess => {
+        this.submissionErrMess = errormess;
+      }
+    );
   }
 }

@@ -12,7 +12,6 @@ export class FeedbackService {
   constructor(private http: HttpClient) { }
 
   public submitFeedback(feedback: Feedback | any): Observable<Feedback> {
-    console.log(feedback);
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type" : "application/json"
