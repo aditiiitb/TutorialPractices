@@ -67,6 +67,13 @@
           <span> {{leader.description}} </span>
         </p>
       </mat-list-item>
+      <div [hidden]="leaders || leaderErrMess">
+        <mat-spinner> </mat-spinner><h4>Loading ...</h4>
+      </div>
+      <div fxFlex *ngIf="leaderErrMess">
+        <h2>Error</h2>
+        <h4>{{leaderErrMess}}</h4>
+      </div>
     </mat-list>
   </div>
 </div>
